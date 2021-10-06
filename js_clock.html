@@ -1,0 +1,63 @@
+  <!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Yuniq JS Clock</title>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
+        <style>
+            body {
+                overflow: hidden;
+                margin: 0px;
+                padding: 0px;
+            }
+            .container {
+                margin:0px;
+                padding:0px;
+            }
+            #digital-clock {
+                overflow:hidden;
+                padding-top: 250px;
+                width:1920px;
+                height:1080px;
+                background-color:#000;
+            }
+            #txt {
+                color:white;
+                font-size:300px;
+                font-variant-numeric: tabular-nums lining-nums;
+            }
+        </style>
+        <script>
+            function startTime() {
+                var today = new Date();
+                var h = today.getHours();
+                var m = today.getMinutes();
+                var s = today.getSeconds();
+                var ap = "am";
+                if (h > 12) {
+                    h = h - 12;
+                    ap = "pm";
+                } else if (h == 12) {ap = "pm";}
+                m = checkTime(m);
+                s = checkTime(s);
+                document.getElementById('txt').innerHTML =
+                h + ":" + m + ":" + s + ap;
+                var t = setTimeout(startTime, 500);
+            }
+            function checkTime(i) {
+                if (i < 10) {i = "0" + i};
+                return i;
+            }
+        </script>
+    </head>
+    <body onload="startTime()">
+        <div id="digital-clock">
+            <center>
+                <span id="txt">...</span>
+            </center>
+        </div>
+    </body>
+</html>
